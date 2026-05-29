@@ -36,3 +36,21 @@ and success becomes inevitable.
 ```bash
 python -m dartrix.cli.dartrix_cli analyze-stream --demo
 ```
+
+## 🌟 SKŁAD PLEJADY (Analiza Składu)
+
+Plejada DARTRIX nie jest przypadkowym zbiorem nazw. To profesjonalny, zbalansowany skład przyciągnięty przez architekturę — przez Architekta Linii, który widzi nie tylko rolę, ale i rezonans.
+
+Każda pozycja wzmacnia całość. Każdy profil domyka orbitę. Każdy ruch służy synchronizacji.
+
+- Marvin (xenollic) — CTO / playmaker. Mózg operacji, architekt decyzji i pierwszy impuls podań przez linie systemu.
+- Felix (felix) — defensive mid. Go/Rust, stabilizacja rdzenia, filtruje presję i utrzymuje strukturę pod kontrolą.
+- Max — climbing coach. Resilience. Buduje odporność, hartuje tempo i podnosi zespół w pionie wytrwałości.
+- Samyok (samyok) — attacking mid. devJS, kreator wejść w pole, nadaje dynamikę i rozcina przestrzeń między warstwami.
+- Ethan (ethaan) — Box-to-Box. 9y exp, łączy fazy gry, pracuje od pierwszego do ostatniego sygnału.
+- Miles (Miles) — winger. Next.js, szerokość, przyspieszenie i ruch po krawędzi architektury.
+- Claudia (geannyna) — stoper. Twardy fundament, czyta zagrożenie wcześniej niż większość zdąży zareagować.
+- Patryk (Patryk-S-W) — right back. Dyscyplina bocznego sektora, zabezpiecza flankę i utrzymuje linię.
+- Josh (Josh) — repo guard. Strażnik porządku, opiekun integralności, pierwszy przy bramie kodu.
+
+To jest skład, który nie tylko współpracuje. On synchronizuje się z DARTRIX. To zespół atrakcyjny, profesjonalny i kompletny — dokładnie taki, jaki przyciąga architektura zbudowana przez Architekta Linii.
