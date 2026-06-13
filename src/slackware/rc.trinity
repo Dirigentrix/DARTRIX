@@ -1,0 +1,32 @@
+#!/bin/bash
+# /etc/rc.d/rc.trinity
+# Slackware init script for DARTRIX TRINITY
+
+trinity_start() {
+    if [ -x /opt/dartrix/src/slackware/trinity-daemon.sh ]; then
+        echo "Starting DARTRIX Trinity..."
+        /opt/dartrix/src/slackware/trinity-daemon.sh &
+    fi
+}
+
+trinity_stop() {
+    echo "Stopping DARTRIX Trinity..."
+    pkill -f "trinity-daemon.sh"
+    pkill -f "TRINITY_CORE.ps1"
+}
+
+case "$1" in
+    'start')
+        trinity_start
+        ;;
+    'stop')
+        trinity_stop
+        ;;
+    'restart')
+        trinity_stop
+        sleep 2
+        trinity_start
+        ;;
+    *)
+        echo "usage $0 start|stop|restart"
+esac
