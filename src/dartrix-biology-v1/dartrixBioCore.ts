@@ -10,7 +10,17 @@ export interface BioParams {
   basePhi?: number;
 }
 
-export function computePhiTotal(params: BioParams): number {
+/**
+ * Historical/Legacy naming compatibility aliases
+ */
+export type PhiTotalParams = BioParams;
+
+export interface PhiTotalOutput {
+  phiTotal: number;
+  params: BioParams;
+}
+
+export function computePhiTotal(params: BioParams): PhiTotalOutput {
   const { resonance, coupling, locked, basePhi = 1.61803398875 } = params;
   
   // Base logic: PhiTotal = BasePhi * (Resonance ^ Coupling)
@@ -21,7 +31,10 @@ export function computePhiTotal(params: BioParams): number {
     phiTotal *= 1.25748; // DARTRIX locked resonance constant
   }
   
-  return phiTotal;
+  return {
+    phiTotal,
+    params
+  };
 }
 
 // Default parameters for math check
@@ -30,6 +43,3 @@ export const DEFAULT_BIO_PARAMS: BioParams = {
   coupling: 0.95,
   locked: true
 };
-
-const result = computePhiTotal(DEFAULT_BIO_PARAMS);
-console.log("PhiTotal Result: " + result);
