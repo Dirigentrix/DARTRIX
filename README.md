@@ -1,22 +1,19 @@
-# DARTRIX
+# DARTRIX OS v1.0
 
-Systems architecture, automation, and AI demos by Dirigentrix.
+DARTRIX OS is a meta-operating system designed for deterministic state management and operational integration flow.
 
-DARTRIX is a public-facing build space for practical prototypes, demo flows, and integrated workflows. The focus is on shipping clear, testable examples that connect AI, automation, and delivery pipelines to real use cases.
+## Architecture
 
-## What this repo highlights
+- **SOIF Persistence**: Stabilized Operational Integration Flow layer for immutable state logging.
+- **Replay Engine**: Deterministic replay of system transitions for debugging and verification.
+- **Dartrix Adapters**: Extensible interface system for connecting to external resources.
 
-- Systems architecture and workflow design
-- AI assistants, orchestration, and tool integration
-- CI/CD, deployment, and operational automation
-- Product demos and partner-ready showcases
-- Practical applications with real business context
+## Quick Start
 
-## Selected applications
+1. Install dependencies: `pip install -r requirements.txt`
+2. Boot the system: `python start_dartrix.py`
+3. View logs/replay: `python replay.py`
 
-- BeeLab — sensor-driven bee health monitoring and early-warning workflows
-- PASSPORTOS — automated plant passport generation and ERP-oriented process support
+## Development
 
-## Sharing note
-
-This repo is intended to be easy to explain to technical and business stakeholders alike.
+Use the included `Makefile` for common tasks.

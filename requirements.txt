@@ -1,0 +1,4 @@
+# DARTRIX OS v1.0 Dependencies
+typing-extensions>=4.0.0
+# Built-in sqlite3 used for persistence
+# Built-in json used for serialization
