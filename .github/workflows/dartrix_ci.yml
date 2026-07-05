@@ -1,0 +1,31 @@
+name: DARTRIX CI/CD Core Validation
+on: [push, pull_request]
+jobs:
+  validate-resonance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Run Zero-Cloud & Memory Guard Checks
+        run: |
+          python -c "
+          import os, sys
+          for root, dirs, files in os.walk('.'):
+              for file in files:
+                  if file.endswith('.py'):
+                      path = os.path.join(root, file)
+                      with open(path, 'r', encoding='utf-8') as f:
+                          content = f.read()
+                          if 'import requests' in content or 'from requests' in content:
+                              print(f'CRITICAL ERROR: {path} violates Zero-Cloud urllib-only policy!')
+                              sys.exit(1)
+                          if '__init__' in content:
+                              pass
+                          elif 'init' in content:
+                              print(f'CRITICAL ERROR: {path} has invalid dunder format!')
+                              sys.exit(1)
+          print('DARTRIX Core Verification: PASS. Zero-Cloud and dunder policies validated.')
+          "
