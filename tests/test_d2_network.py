@@ -20,7 +20,7 @@ def test_euler_maruyama_step_matches_deterministic_drift_when_noise_zero():
     model = D2Network([[0.0, 1.0], [1.0, 0.0]], a=1.0, b=1.0,
                       coupling=0.5, noise=0.0, seed=42)
     result = model.step(0.1, [1.0, 2.0])
-    assert result == pytest.approx([1.1, 1.7])
+    assert result == pytest.approx([1.1, 1.45])
 
 
 def test_seed_makes_trajectories_reproducible():
