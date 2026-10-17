@@ -12,20 +12,20 @@ jobs:
       - name: Run Zero-Cloud & Memory Guard Checks
         run: |
           python -c "
-          import os, sys
+          import os, re, sys
+          # Flag only a misspelled single-underscore dunder like _init_ (not __init__, not _init_db, not the plain word init)
+          BAD_DUNDER = re.compile(r'(?<!\w)_init_(?!\w)')
           for root, dirs, files in os.walk('.'):
               for file in files:
                   if file.endswith('.py'):
                       path = os.path.join(root, file)
                       with open(path, 'r', encoding='utf-8') as f:
                           content = f.read()
-                          if 'import requests' in content or 'from requests' in content:
-                              print(f'CRITICAL ERROR: {path} violates Zero-Cloud urllib-only policy!')
-                              sys.exit(1)
-                          if '__init__' in content:
-                              pass
-                          elif 'init' in content:
-                              print(f'CRITICAL ERROR: {path} has invalid dunder format!')
-                              sys.exit(1)
+                      if 'import requests' in content or 'from requests' in content:
+                          print(f'CRITICAL ERROR: {path} violates Zero-Cloud urllib-only policy!')
+                          sys.exit(1)
+                      if BAD_DUNDER.search(content):
+                          print(f'CRITICAL ERROR: {path} has invalid dunder format!')
+                          sys.exit(1)
           print('DARTRIX Core Verification: PASS. Zero-Cloud and dunder policies validated.')
           "
