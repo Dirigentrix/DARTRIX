@@ -1,19 +1,59 @@
-# DARTRIX OS v1.0
+# DARTRIX OS v2.0
 
-DARTRIX OS is a meta-operating system designed for deterministic state management and operational integration flow.
+> **Deterministyczny Meta-OS dla orkiestracji agentów i procesów biznesowych.**
 
-## Architecture
+**Author:** Daniel Adrian Ratajczyk  
+**Organization:** Dirigentrix  
+**License:** MIT  
+**Version:** 2.0-clean (2026-10-18)
 
-- **SOIF Persistence**: Stabilized Operational Integration Flow layer for immutable state logging.
-- **Replay Engine**: Deterministic replay of system transitions for debugging and verification.
-- **Dartrix Adapters**: Extensible interface system for connecting to external resources.
+---
+
+## Co to jest?
+
+DARTRIX OS to nie framework do agentów. To **system operacyjny** który zarządza agentami, stanem i integracjami w sposób deterministyczny.
+
+Inspiracje: Erlang/Akka (crash-only), Event Sourcing, Viable System Model (Beer), SOIF.
+
+## Architektura
+
+Jeden obieg:
+
+[EVENT] -> [SOIF] -> [KERNEL] -> [ADAPTER] -> [REPLAY]
+
+- **SOIF** - Immutable log, jedyny Source of Truth
+- **KERNEL** - Deterministyczny scheduler stanów
+- **ADAPTER** - Wymienne adaptery (Allegro, LLM, VSM, File)
+- **REPLAY** - Odtwarzanie stanu dla debug/audytu
+
+Pełna spec: zobacz `ARCHITECTURE.md`
 
 ## Quick Start
 
-1. Install dependencies: `pip install -r requirements.txt`
-2. Boot the system: `python start_dartrix.py`
-3. View logs/replay: `python replay.py`
+```bash
+pip install -r requirements.txt
+python start_dartrix.py
+python replay.py
+python examples/allegro_vsm_demo.py
+```
 
-## Development
+## Struktura v2 (Clean)
 
-Use the included `Makefile` for common tasks.
+```
+/README.md, ARCHITECTURE.md, Makefile, requirements.txt, .gitignore
+/core/kernel_scheduler.py - JEDYNY kernel
+/core/soif_persistence.py - immutable log
+/core/trix_router.py
+/adapters/
+/examples/allegro_vsm_demo.py - główny dowód
+/legacy/ - stare wersje
+```
+
+## Autor
+
+**Daniel Adrian Ratajczyk** - Dirigentrix  
+GitHub: @Dirigentrix
+
+---
+
+*Deterministyczny system zarządzania stanem nie może sam być w stanie superpozycji.*

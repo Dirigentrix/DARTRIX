@@ -1,27 +1,27 @@
-import time
-from soif_persistence import SOIFPersistence
-from dartrix_adapters import AdapterRegistry, FileAdapter, NetworkAdapter
+#!/usr/bin/env python3
+"""DARTRIX OS v2.0 - boot banner and deterministic kernel start.
+Autor: Daniel Adrian Ratajczyk (Dirigentrix)
+"""
+
+from dartrix_os import DARTRIX_OS
+
+BANNER = """
+==============================================
+  DARTRIX OS v2.0
+  Deterministic Meta-OS for Agent Orchestration
+  Autor: Daniel Adrian Ratajczyk (Dirigentrix)
+==============================================
+"""
+
 
 def main():
-    print("--- DARTRIX OS v1.0 Booting ---")
-    
-    # Initialize Persistence and Adapters
-    persistence = SOIFPersistence()
-    registry = AdapterRegistry()
-    registry.register(FileAdapter())
-    registry.register(NetworkAdapter())
+    print(BANNER)
+    os_instance = DARTRIX_OS()
+    os_instance.boot()
+    result = os_instance.run_cycle({"type": "SYSTEM_CHECK", "payload": "v2.0 boot"})
+    for res in result:
+        print(f"-> {res['role']}: {res['status']}")
 
-    # Example lifecycle event
-    boot_payload = {"status": "operational", "version": "1.0"}
-    persistence.log_transition("Kernel", "BOOT", boot_payload)
-    registry.broadcast({"component": "Kernel", "action": "BOOT", "payload": boot_payload})
-
-    print("--- DARTRIX OS v1.0 Operational ---")
-    try:
-        while True:
-            time.sleep(10)
-    except KeyboardInterrupt:
-        print("\n--- DARTRIX OS v1.0 Shutting Down ---")
 
 if __name__ == "__main__":
     main()
